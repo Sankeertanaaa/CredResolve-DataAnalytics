@@ -1,0 +1,39 @@
+CredResolve Data Analyst Assignment Submission
+
+Main finding:
+The reported 11% month-on-month recovery improvement is not sustained. March 2026 is +11.03% versus February, but January to July recovery changes by 0.01%.
+
+Recommendation:
+Better borrower targeting, validated through a controlled experiment before full ₹10 Cr deployment.
+
+Core files:
+README.md
+analysis/analysis.ipynb
+data/golden/golden_account_month.csv
+data/golden/monthly_metrics.csv
+data/quality/data_quality_report.csv
+dashboard/executive_dashboard.html
+docs/executive_memo.md
+docs/executive_memo.docx
+docs/data_cleaning.md
+docs/counterfactual_methodology.md
+docs/architecture_decision.md
+docs/architecture.svg
+sql/01_data_quality.sql
+sql/02_golden_metrics.sql
+sql/03_investment_analysis.sql
+src/build_golden.py
+
+Important scope note:
+The supplied dataset runs from January 2026 through 8 August 2026. August is partial and is excluded from the main month-over-month trend.
+
+Important data-quality findings:
+500 duplicate payment IDs
+1,350 duplicate call IDs
+89,939 call borrower-ID mismatches against account borrower ID
+25,113 payment borrower-ID mismatches
+118,126 call-attempt borrower-ID mismatches
+60,028 cleaned calls with timezone mismatch versus vendor mapping
+1,099 employee codes mapping to multiple agent IDs
+1,000 agent IDs mapping to multiple employee codes
+30,191 account-status records recorded before event time

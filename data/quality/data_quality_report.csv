@@ -1,0 +1,24 @@
+dataset,issue,affected_rows_or_groups,business_impact,treatment
+payments,duplicate_payment_ids,500,500 payment_id groups had duplicates,Deduplicated to one payment_id; 14 groups had only a missing payment_reference difference
+payments,exact_duplicate_rows,486,Exact duplicate payment rows,Removed
+calls,duplicate_call_ids,1350,"1,350 call_id groups had duplicates",Deduplicated; 79 groups had conflicting event_at or agent_id and require conservative interpretation
+calls,exact_duplicate_rows,1271,Exact duplicate call rows,Removed
+whatsapp_events,exact_duplicate_rows,600,Exact duplicate WhatsApp events,Removed in event-level cleaning
+calls,borrower_id_mismatch,89939,Event borrower_id disagrees with account borrower_id,Account borrower_id used as analytical source of truth
+calls,orphan_account_id,0,Rows reference an account_id absent from accounts,Excluded from account-level golden metrics
+payments,borrower_id_mismatch,25113,Event borrower_id disagrees with account borrower_id,Account borrower_id used as analytical source of truth
+payments,orphan_account_id,0,Rows reference an account_id absent from accounts,Excluded from account-level golden metrics
+call_attempts,borrower_id_mismatch,118126,Event borrower_id disagrees with account borrower_id,Account borrower_id used as analytical source of truth
+call_attempts,orphan_account_id,0,Rows reference an account_id absent from accounts,Excluded from account-level golden metrics
+call_dispositions,borrower_id_mismatch,34474,Event borrower_id disagrees with account borrower_id,Account borrower_id used as analytical source of truth
+call_dispositions,orphan_account_id,0,Rows reference an account_id absent from accounts,Excluded from account-level golden metrics
+promises_to_pay,borrower_id_mismatch,17706,Event borrower_id disagrees with account borrower_id,Account borrower_id used as analytical source of truth
+promises_to_pay,orphan_account_id,0,Rows reference an account_id absent from accounts,Excluded from account-level golden metrics
+calls,timezone_mismatch_vs_vendor,60028,Call timezone differs from vendor timezone,Reported as a data-quality issue; no silent correction
+calls,missing_agent_id,1759,Calls have no agent identifier,Retained for call-level metrics; excluded from agent attribution
+payments,missing_payment_reference,368,Payment references are missing on some records,payment_id remains the primary payment key
+schema,missing_client_dimension,1,No client identifier is present in the supplied datasets,Client-level analysis is not possible
+schema,missing_language_dimension,1,No language field is present in the supplied datasets,Language-level analysis is not possible
+agents,employee_code_maps_to_multiple_agent_ids,1099,Employee codes are not stable identifiers,agent_id used as canonical operational identity
+agents,agent_id_maps_to_multiple_employee_codes,1000,Agent records contain changing employee_code values,Latest updated_at snapshot retained
+account_status_history,recorded_before_event,30191,Historical records can be recorded before event time,Retained as late-arriving/history metadata

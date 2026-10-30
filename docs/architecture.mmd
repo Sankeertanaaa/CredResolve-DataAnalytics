@@ -1,0 +1,9 @@
+flowchart LR
+A[Raw source files] --> B[Staging]
+B --> C[Clean and entity resolution]
+C --> D[Golden account-month]
+D --> E[Feature layer]
+E --> F[Metric layer]
+F --> G[Executive dashboard]
+F --> H[Executive memo]
+C --> I[Data quality report]
